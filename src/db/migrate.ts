@@ -1,0 +1,7 @@
+import { migrate } from 'drizzle-orm/better-sqlite3/migrator';
+import db from './index';
+
+// This will run migrations on the database, skipping the ones already applied
+migrate(db, { migrationsFolder: './migrations' });
+
+console.log('Migrations complete!');

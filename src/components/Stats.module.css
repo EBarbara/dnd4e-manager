@@ -1,0 +1,61 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.section {
+    margin-bottom: 1.5rem;
+}
+
+.section h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.25rem;
+}
+
+.statsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.statRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.label {
+    font-weight: 700;
+    width: 3rem;
+}
+
+.value {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.mod {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    min-width: 2rem;
+    text-align: center;
+}
+
+.input {
+    width: 4rem;
+    padding: 0.25rem;
+    text-align: center;
+}

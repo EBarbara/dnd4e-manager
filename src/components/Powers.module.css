@@ -1,0 +1,106 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.typeHeader {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+}
+
+.atwill {
+    background-color: #15803d;
+}
+
+/* Green */
+.encounter {
+    background-color: #b91c1c;
+}
+
+/* Red */
+.daily {
+    background-color: #1e293b;
+    border: 1px solid #94a3b8;
+}
+
+/* Black/Grey */
+
+.powerCard {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.powerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.25rem;
+}
+
+.powerHeader h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.actionType {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.powerDetails p {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    color: #cbd5e1;
+}
+
+.deleteBtn {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    background: none;
+    border: none;
+    color: #ef4444;
+    font-size: 1.2rem;
+    line-height: 1;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.powerCard:hover .deleteBtn {
+    opacity: 1;
+}

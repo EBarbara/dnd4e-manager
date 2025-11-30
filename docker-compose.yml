@@ -1,0 +1,25 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dnd4e-manager
+    container_name: dnd4e-manager
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - sqlite_data:/app/data
+    environment:
+      - DATABASE_FILE=/app/data/dnd4e.db
+      - JWT_SECRET=change-me-in-prod
+      # We need to override the db path in the code or use an env var.
+      # Currently db.ts uses process.cwd() + 'dnd4e.db'.
+      # In the container, WORKDIR is /app. So it will be /app/dnd4e.db.
+      # We want it in /app/data/dnd4e.db to persist it.
+      # We need to update db.ts to respect an env var or we just mount /app/dnd4e.db directly?
+      # Mounting a file that doesn't exist might be tricky. Better to mount a dir.
+      # Let's update db.ts to check for DATABASE_FILE env var.
+
+volumes:
+  sqlite_data:
