@@ -4,6 +4,7 @@ import { useState, useEffect, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 import { Character } from '@/types';
+import { authClient } from '@/lib/auth-client';
 
 export default function Dashboard() {
     const [characters, setCharacters] = useState<Character[]>([]);
@@ -52,7 +53,7 @@ export default function Dashboard() {
     };
 
     const handleLogout = async () => {
-        await fetch('/api/auth/logout', { method: 'POST' });
+        await authClient.signOut();
         router.push('/');
     };
 

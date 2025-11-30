@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { eq, and } from 'drizzle-orm';
 import db from '@/db';
 import { characters } from '@/db/schema';
-import { getSession } from '@/utils/auth';
+import { auth } from '@/lib/auth';
 import { Character } from '@/types';
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-    const session = await getSession();
+    const session = await auth.api.getSession({ headers: request.headers });
     if (!session) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -16,7 +16,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     try {
         const [character] = db.select()
             .from(characters)
-            .where(and(eq(characters.id, Number(id)), eq(characters.userId, session.userId as number)))
+            .where(and(eq(characters.id, Number(id)), eq(characters.userId, session.user.id)))
             .all();
 
         if (!character) {
@@ -38,7 +38,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 }
 
 export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-    const session = await getSession();
+    const session = await auth.api.getSession({ headers: request.headers });
     if (!session) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -63,7 +63,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
         const info = db.update(characters)
             .set(updateData)
-            .where(and(eq(characters.id, Number(id)), eq(characters.userId, session.userId as number)))
+            .where(and(eq(characters.id, Number(id)), eq(characters.userId, session.user.id)))
             .run();
 
         if (info.changes === 0) {
@@ -78,7 +78,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 }
 
 export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-    const session = await getSession();
+    const session = await auth.api.getSession({ headers: request.headers });
     if (!session) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -87,7 +87,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
 
     try {
         const info = db.delete(characters)
-            .where(and(eq(characters.id, Number(id)), eq(characters.userId, session.userId as number)))
+            .where(and(eq(characters.id, Number(id)), eq(characters.userId, session.user.id)))
             .run();
 
         if (info.changes === 0) {

@@ -4,9 +4,12 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
+import { authClient } from '@/lib/auth-client';
+
 export default function Home() {
   const [isLogin, setIsLogin] = useState(true);
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState(''); // Changed from username to email
+  const [name, setName] = useState(''); // Added name for registration
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
@@ -15,24 +18,35 @@ export default function Home() {
     e.preventDefault();
     setError('');
 
-    const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
-
     try {
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || 'Something went wrong');
+      if (isLogin) {
+        await authClient.signIn.email({
+          email,
+          password,
+        }, {
+          onSuccess: () => {
+            router.push('/dashboard');
+          },
+          onError: (ctx) => {
+            setError(ctx.error.message);
+          }
+        });
+      } else {
+        await authClient.signUp.email({
+          email,
+          password,
+          name,
+        }, {
+          onSuccess: () => {
+            router.push('/dashboard');
+          },
+          onError: (ctx) => {
+            setError(ctx.error.message);
+          }
+        });
       }
-
-      router.push('/dashboard');
     } catch (err: any) {
-      setError(err.message);
+      setError(err.message || 'Something went wrong');
     }
   };
 
@@ -50,14 +64,28 @@ export default function Home() {
             {error && <div className={styles.error}>{error}</div>}
 
             <form onSubmit={handleSubmit} className={styles.form}>
+              {!isLogin && (
+                <div className={styles.field}>
+                  <label htmlFor="name">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    className="input"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                  />
+                </div>
+              )}
+
               <div className={styles.field}>
-                <label htmlFor="username">Username</label>
+                <label htmlFor="email">Email</label>
                 <input
-                  type="text"
-                  id="username"
+                  type="email"
+                  id="email"
                   className="input"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>

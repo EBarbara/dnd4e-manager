@@ -1,7 +1,11 @@
 export type User = {
-    id: number;
-    username: string;
-    password?: string;
+    id: string;
+    name: string;
+    email: string;
+    emailVerified: boolean;
+    image?: string | null;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export type AbilityScores = {
@@ -30,7 +34,7 @@ export type Health = {
 
 export type Character = {
     id: number;
-    userId: number;
+    userId: string;
     name: string;
     race: string;
     class: string;

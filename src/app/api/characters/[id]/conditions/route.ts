@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { eq, and } from 'drizzle-orm';
 import db from '@/db';
 import { conditions } from '@/db/schema';
-import { getSession } from '@/utils/auth';
+import { auth } from '@/lib/auth';
 import { Condition } from '@/types';
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-    const session = await getSession();
+    const session = await auth.api.getSession({ headers: request.headers });
     if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const { id } = await params;
@@ -20,7 +20,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 }
 
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-    const session = await getSession();
+    const session = await auth.api.getSession({ headers: request.headers });
     if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const { id } = await params;
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
 }
 
 export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-    const session = await getSession();
+    const session = await auth.api.getSession({ headers: request.headers });
     if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const { id } = await params;
