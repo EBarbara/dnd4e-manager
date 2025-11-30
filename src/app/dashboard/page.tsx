@@ -74,7 +74,7 @@ export default function Dashboard() {
                     </div>
                 ))}
 
-                <button className={`card ${styles.addCard}`} onClick={() => setShowModal(true)}>
+                <button className={`card ${styles.addCard}`} onClick={() => router.push('/character/create')}>
                     <span className={styles.plus}>+</span>
                     <span>New Character</span>
                 </button>
