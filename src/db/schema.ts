@@ -78,3 +78,19 @@ export const conditions = sqliteTable('conditions', {
     duration: text('duration'),
     effectDescription: text('effect_description'),
 });
+
+export const races = sqliteTable('races', {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    name: text('name').notNull(),
+    descriptionShort: text('description_short').notNull(),
+    descriptionLong: text('description_long').notNull(),
+    averageHeightMin: integer('average_height_min').notNull(),
+    averageHeightMax: integer('average_height_max').notNull(),
+    averageWeightMin: integer('average_weight_min').notNull(),
+    averageWeightMax: integer('average_weight_max').notNull(),
+    abilityScores: text('ability_scores').notNull(),
+    size: text('size').notNull(),
+    speed: integer('speed').notNull(),
+    vision: text('vision').notNull(),
+    traits: text('traits').notNull(), // JSON
+});

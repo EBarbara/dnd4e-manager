@@ -64,3 +64,19 @@ export type Condition = {
     duration: string;
     effectDescription: string;
 }
+
+export type Race = {
+    id: number;
+    name: string;
+    descriptionShort: string;
+    descriptionLong: string;
+    averageHeightMin: number; // inches
+    averageHeightMax: number; // inches
+    averageWeightMin: number; // lbs
+    averageWeightMax: number; // lbs
+    abilityScores: string;
+    size: string;
+    speed: number;
+    vision: string;
+    traits: string; // JSON string of { name: string, description: string }[]
+}

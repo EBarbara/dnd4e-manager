@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+  padding: 2rem;
 }
 
 .hero {
@@ -16,6 +17,7 @@
   color: var(--primary);
   text-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
   font-family: var(--font-serif, serif);
+  margin-bottom: 1rem;
 }
 
 .hero p {
@@ -26,6 +28,77 @@
 .authContainer {
   max-width: 400px;
   margin: 0 auto;
+  width: 100%;
+}
+
+.menuContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.menuGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.menuCard {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.menuCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.menuCard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.menuCard p {
+  color: var(--text-secondary);
+}
+
+.welcome {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+}
+
+.logoutBtn {
+  margin-top: 2rem;
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logoutBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .form {
@@ -64,6 +137,7 @@
   text-decoration: underline;
   padding: 0;
   font-size: inherit;
+  cursor: pointer;
 }
 
 .linkBtn:hover {
