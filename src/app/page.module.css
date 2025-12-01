@@ -31,74 +31,51 @@
   width: 100%;
 }
 
-.menuContainer {
+.contentContainer {
   max-width: 800px;
   margin: 0 auto;
   width: 100%;
+  color: var(--text-primary);
 }
 
-.menuGrid {
+.welcomeSection {
+  text-align: center;
+}
+
+.welcomeSection h2 {
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.description {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: var(--text-secondary);
+}
+
+.features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
+  text-align: left;
 }
 
-.menuCard {
+.feature {
   background-color: var(--card-bg);
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 12px;
   border: 1px solid var(--border-color);
-  cursor: pointer;
-  transition: all 0.2s;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-  text-decoration: none;
-  color: var(--text-primary);
 }
 
-.menuCard:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.menuCard h3 {
-  font-size: 1.5rem;
+.feature h3 {
+  color: var(--primary);
   margin-bottom: 0.5rem;
-  color: var(--primary);
 }
 
-.menuCard p {
+.feature p {
   color: var(--text-secondary);
-}
-
-.welcome {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: var(--text-primary);
-}
-
-.logoutBtn {
-  margin-top: 2rem;
-  background: none;
-  border: 1px solid var(--border-color);
-  color: var(--text-secondary);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.logoutBtn:hover {
-  border-color: var(--primary);
-  color: var(--primary);
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .form {

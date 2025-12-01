@@ -74,23 +74,27 @@ export default function Home() {
         </div>
 
         {session ? (
-          <div className={styles.menuContainer}>
-            <h2 className={styles.welcome}>Welcome, {session.user.name}</h2>
-            <div className={styles.menuGrid}>
-              <Link href="/dashboard" className={styles.menuCard}>
-                <h3>Character Dashboard</h3>
-                <p>Manage your characters</p>
-              </Link>
-              <Link href="/admin" className={styles.menuCard}>
-                <h3>Admin Dashboard</h3>
-                <p>Manage game data</p>
-              </Link>
-              <div className={styles.menuCard} style={{ opacity: 0.5, cursor: 'not-allowed' }}>
-                <h3>Compendium</h3>
-                <p>Coming Soon</p>
+          <div className={styles.contentContainer}>
+            <div className={styles.welcomeSection}>
+              <h2>Welcome back, {session.user.name}!</h2>
+              <p className={styles.description}>
+                D&D 4e Manager is your comprehensive tool for creating and managing Dungeons & Dragons 4th Edition characters.
+              </p>
+              <div className={styles.features}>
+                <div className={styles.feature}>
+                  <h3>Character Creation</h3>
+                  <p>Use our step-by-step wizard to build your hero, from Race and Class selection to Powers and Equipment.</p>
+                </div>
+                <div className={styles.feature}>
+                  <h3>Power Management</h3>
+                  <p>Keep track of your At-Will, Encounter, and Daily powers. Mark them as used and rest to recover them.</p>
+                </div>
+                <div className={styles.feature}>
+                  <h3>Conditions Tracker</h3>
+                  <p>Easily apply and track status effects and conditions during combat.</p>
+                </div>
               </div>
             </div>
-            <button onClick={handleLogout} className={styles.logoutBtn}>Logout</button>
           </div>
         ) : (
           <div className={styles.authContainer}>
